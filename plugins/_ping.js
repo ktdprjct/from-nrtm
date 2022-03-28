@@ -13,6 +13,11 @@ module.exports = {
             m.reply("hai kak, ada yang bisa bot bantu?\nketik .menu untuk melihat menu")              
             break
             
+          case "assalamualaikum": case "assalamu'alaikum": case "assalamu’alaikum warahmatullahi wabarakatuh": case "assalamualaikum warahmatullahi wabarakatuh":              
+          case "assalamualaikum bot": case "assalamu'alaikum bot": case "assalamu’alaikum wr wb": case "assalamualaikum wr wb":
+            m.reply("وَعَلَيْكُمُ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ")
+            break
+            
           case "thnk bot": case "thank you bot": case "thankyou bot": case "thank you": case "tq bot":
           case "thnk": case "thanks": case "makasih": case "mksh": case "makasih bot": case "tq":
           case "mksh bot": case "terima kasih": case "terimakasih bot": case "ty bot": case "ty":
