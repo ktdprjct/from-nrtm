@@ -23,22 +23,21 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-╭─「 %me 」
-│ Hai, %name!
-│
+╭────❑ *MENU* ❑────
+│✾ Hai, Kak %name!
+❑────❑ %me
+│✾ Version: %version
+│✾ Library: Baileys
+│✾ Runtime: %uptime
+╰❑
+╭────❑「 INFO 」❑────
 │ Tersisa *%limit Limit*
 │ Role *%role*
 │ Level *%level*
 │ %totalexp XP in Total
-│ 
-│ Tanggal: *%week, %date*
-│ Tanggal Islam: *%dateIslamic*
-│ Waktu: *%time*
-│
-│ Uptime: *%uptime (%muptime)*
 │ Database: %rtotalreg of %totalreg
 ╰────
-╭─「 ᴛʜᴀɴᴋ ʏᴏᴜ ᴛᴏ 」
+╭───❑「 ᴛʜᴀɴᴋ ʏᴏᴜ ᴛᴏ 」❑───
 │ *↓ Nurutomo ↓*
 │ https://github.com/Nurutomo
 │ *↓ rthelolchex ↓*
@@ -46,7 +45,7 @@ const defaultMenu = {
 ╰────
 %readmore`.trimStart(),
   header: '╭─「 %category 」',
-  body: '│ ➪ %cmd %islimit %isPremium',
+  body: '│ 🗿⃫⃟⃤ %cmd %islimit %isPremium',
   footer: '╰────\n',
   after: `
 `,
@@ -119,8 +118,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
           ...help.filter(menu => menu.tags && menu.tags.includes(tag) && menu.help).map(menu => {
             return menu.help.map(help => {
               return body.replace(/%cmd/g, menu.prefix ? help : '%p' + help)
-                .replace(/%islimit/g, menu.limit ? '(Limit)' : '')
-                .replace(/%isPremium/g, menu.premium ? '(Premium)' : '')
+                .replace(/%islimit/g, menu.limit ? '🅛' : '')
+                .replace(/%isPremium/g, menu.premium ? '🅟' : '')
                 .trim()
             }).join('\n')
           }),
@@ -147,7 +146,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     //conn.reply(m.chat, text.trim(), m)
-    conn.send2ButtonLoc(m.chat, fs.readFileSync('./logonya.jpg'), text.trim(), 'ktdprjct', 'ᴅᴏɴᴀᴛᴇ', `.donate`, `ᴏᴡɴᴇʀ`,`.owner`, m)
+    conn.send2ButtonLoc(m.chat, fs.readFileSync('./logonya.jpg'), text.trim(), '🅛=limit 🅟=premium', 'donate', `.donate`, `owner`,`.owner`, m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
