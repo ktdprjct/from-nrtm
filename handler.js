@@ -335,6 +335,7 @@ module.exports = {
   },
   async participantsUpdate({ jid, participants, action }) {
     let chat = global.db.data.chats[jid] || {}
+    let fetch = require('node-fetch')
     let text = ''
     switch (action) {
       case 'add':
@@ -349,11 +350,7 @@ module.exports = {
             } finally {
               text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
                 (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-              this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
-                contextInfo: {
-                  mentionedJid: [user]
-                }
-              })
+              conn.sendButtonLoc(jid, pp, text, 'ktdprjct', `oke`, `tes`, null)
             }
           }
         }
