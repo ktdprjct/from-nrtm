@@ -1,8 +1,12 @@
 let limit = 30
 const { servers, yta } = require('../lib/y2mate')
-let handler = async (m, { conn, args, isPrems, isOwner }) => {
+let yts = require('yt-search')
+let handler = async (m, { conn, text, args, isPrems, isOwner }) => {
   if (!args || !args[0]) throw 'Uhm... urlnya mana?'
   let chat = global.db.data.chats[m.chat]
+  let results = await yts(text)
+  let vid = results.all.find(video => video.seconds < 600)
+  if (!vid) throw 'Konten Tidak ditemukan/konten lebih dari 10 menit'
   let server = (args[1] || servers[0]).toLowerCase()
   let { dl_link, thumb, title, filesize, filesizeF} = await yta(args[0], servers.includes(server) ? server : servers[0])
   let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
