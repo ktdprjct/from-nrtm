@@ -10,11 +10,12 @@ let handler = async (m, { conn, text, args, isPrems, isOwner }) => {
   let server = (args[1] || servers[0]).toLowerCase()
   let { dl_link, thumb, title, filesize, filesizeF} = await yta(args[0], servers.includes(server) ? server : servers[0])
   let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
-  conn.sendFile(m.chat, thumb, 'thumbnail.jpg', `
+  conn.sendButtonLoc(m.chat, thumb, `
 *Title:* ${title}
+*Duration:* ${vid.timestamp}
 *Filesize:* ${filesizeF}
 *${isLimit ? 'Pakai ': ''}Link:* ${await shortlink(dl_link)}
-`.trim(), m)
+`.trim(), 'ktdprjct', 'wait', 'wait', m)
   if (!isLimit) conn.sendFile(m.chat, dl_link, title + '.mp3', `
 *Title:* ${title}
 *Filesize:* ${filesizeF}
