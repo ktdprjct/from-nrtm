@@ -146,7 +146,8 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     //conn.reply(m.chat, text.trim(), m)
-    conn.send2ButtonLoc(m.chat, fs.readFileSync('./logonya.jpg'), text.trim(), '🅛=limit 🅟=premium', 'donate', `.donate`, `owner`,`.owner`, m)
+    conn.send2ButtonImg(m.chat, `https://telegra.ph/file/9ad3a925d572438242a1e.jpg`, text.trim(), '🅛=limit 🅟=premium', 'donate', `${_p}donate`, `owner`,`${_p}owner`, m)
+    //conn.send2ButtonImg(m.chat, `https://telegra.ph/file/9ad3a925d572438242a1e.jpg`, text.trim())
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
