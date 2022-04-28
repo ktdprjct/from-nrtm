@@ -26,36 +26,172 @@ module.exports = {
         let user = global.db.data.users[m.sender]
         if (typeof user !== 'object') global.db.data.users[m.sender] = {}
         if (user) {
-          if (!isNumber(user.exp)) user.exp = 0
-          if (!isNumber(user.limit)) user.limit = 10
-          if (!isNumber(user.lastclaim)) user.lastclaim = 0
-          if (!('registered' in user)) user.registered = false
-          if (!user.registered) {
-            if (!('name' in user)) user.name = this.getName(m.sender)
-            if (!isNumber(user.age)) user.age = -1
-            if (!isNumber(user.regTime)) user.regTime = -1
-          }
-          if (!isNumber(user.afk)) user.afk = -1
-          if (!('afkReason' in user)) user.afkReason = ''
-          if (!('banned' in user)) user.banned = false
-          if (!isNumber(user.level)) user.level = 0
-          if (!user.role) user.role = 'Beginner'
-          if (!('autolevelup' in user)) user.autolevelup = false
-        } else global.db.data.users[m.sender] = {
-          exp: 0,
-          limit: 10,
-          lastclaim: 0,
-          registered: false,
-          name: this.getName(m.sender),
-          age: -1,
-          regTime: -1,
-          afk: -1,
-          afkReason: '',
-          banned: false,
-          level: 0,
-          role: 'Beginner',
-          autolevelup: false,
-          warning: -1,
+            if (!isNumber(user.exp)) user.exp = 0
+            if (!isNumber(user.limit)) user.limit = 10
+            if (!isNumber(user.lastclaim)) user.lastclaim = 0
+            if (!('registered' in user)) user.registered = false
+            if (!user.registered) {
+              if (!('name' in user)) user.name = m.name
+              if (!isNumber(user.age)) user.age = -1
+              if (!isNumber(user.regTime)) user.regTime = -1
+            }
+            if (!isNumber(user.afk)) user.afk = -1
+            if (!('afkReason' in user)) user.afkReason = ''
+            if (!('banned' in user)) user.banned = false
+            if (!isNumber(user.warn)) user.warn = 0
+            if (!isNumber(user.level)) user.level = 0
+            if (!user.role) user.role = 'Bronze 1'
+            if (!('autolevelup' in user)) user.autolevelup = true
+
+            if (!isNumber(user.money)) user.money = 0
+            if (!isNumber(user.healt)) user.healt = 100
+            if (!isNumber(user.limit)) user.limit = 0
+            if (!isNumber(user.potion)) user.potion = 0
+            if (!isNumber(user.sampah)) user.sampah = 0
+            if (!isNumber(user.kayu)) user.kayu = 0
+            if (!isNumber(user.batu)) user.batu = 0
+            if (!isNumber(user.string)) user.string = 0
+            if (!isNumber(user.petFood)) user.petFood = 0
+
+            if (!isNumber(user.emerald)) user.emerald = 0
+            if (!isNumber(user.diamond)) user.diamond = 0
+            if (!isNumber(user.gold)) user.gold = 0
+            if (!isNumber(user.iron)) user.iron = 0
+
+            if (!isNumber(user.common)) user.common = 0
+            if (!isNumber(user.as)) user.as = 0 
+            if (!isNumber(user.uncommon)) user.uncommon = 0
+            if (!isNumber(user.mythic)) user.mythic = 0
+            if (!isNumber(user.legendary)) user.legendary = 0
+            if (!isNumber(user.pet)) user.pet = 0
+
+            if (!isNumber(user.kuda)) user.kuda = 0
+            if (!isNumber(user.kudaexp)) user.kudaexp = 0
+            if (!isNumber(user.kucing)) user.kucing = 0
+            if (!isNumber(user.kucingexp)) user.kucingexp = 0
+            if (!isNumber(user.rubah)) user.rubah = 0
+            if (!isNumber(user.rubahexp)) user.rubahexp = 0
+            if (!isNumber(user.anjing)) user.anjing = 0
+            if (!isNumber(user.anjingexp)) user.anjingexp = 0
+
+            if (!isNumber(user.kudalastfeed)) user.kudalastfeed = 0
+            if (!isNumber(user.kucinglastfeed)) user.kucinglastfeed = 0
+            if (!isNumber(user.rubahlastfeed)) user.rubahlastfeed = 0
+            if (!isNumber(user.anjinglastfeed)) user.anjinglastfeed = 0
+
+            if (!isNumber(user.armor)) user.armor = 0
+            if (!isNumber(user.armordurability)) user.armordurability = 0
+            if (!isNumber(user.sword)) user.sword = 0
+            if (!isNumber(user.sworddurability)) user.sworddurability = 0
+            if (!isNumber(user.pickaxe)) user.pickaxe = 0
+            if (!isNumber(user.pickaxedurability)) user.pickaxedurability = 0
+            if (!isNumber(user.fishingrod)) user.fishingrod = 0
+            if (!isNumber(user.fishingroddurability)) user.fishingroddurability = 0
+            
+            if (!isNumber(user.paus)) user.paus = 0
+            if (!isNumber(user.kepiting)) user.kepiting = 0
+            if (!isNumber(user.gurita)) user.gurita = 0
+            if (!isNumber(user.cumi)) user.cumi= 0
+            if (!isNumber(user.buntal)) user.buntal = 0
+            if (!isNumber(user.dory)) user.dory = 0
+            if (!isNumber(user.lumba)) user.lumba = 0
+            if (!isNumber(user.lobster)) user.lobster = 0
+            if (!isNumber(user.hiu)) user.hiu = 0
+            if (!isNumber(user.udang)) user.udang = 0
+            if (!isNumber(user.ikan)) user.ikan = 0
+            if (!isNumber(user.orca)) user.orca = 0
+
+            if (!isNumber(user.lastclaim)) user.lastclaim = 0
+            if (!isNumber(user.lastadventure)) user.lastadventure = 0
+            if (!isNumber(user.lastfishing)) user.lastfishing = 0
+            if (!isNumber(user.lastdungeon)) user.lastdungeon = 0
+            if (!isNumber(user.lastduel)) user.lastduel = 0
+            if (!isNumber(user.lastmining)) user.lastmining = 0
+            if (!isNumber(user.lasthunt)) user.lasthunt = 0
+            if (!isNumber(user.lastweekly)) user.lastweekly = 0
+            if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
+          } else global.db.data.users[m.sender] = {
+            exp: 0,
+            limit: 10,
+            lastclaim: 0,
+            registered: false,
+            name: m.name,
+            age: -1,
+            regTime: -1,
+            afk: -1,
+            afkReason: '',
+            banned: false,
+            warn: 0,
+            level: 0,
+            role: 'Beginner',
+            autolevelup: true,
+
+            money: 0,
+            healt: 100,
+            limit: 100,
+            potion: 10,
+            sampah: 0,
+            kayu: 0,
+            batu: 0,
+            string: 0,
+
+            emerald: 0,
+            diamond: 0,
+            gold: 0,
+            iron: 0,
+
+            common: 0,
+            uncommon: 0,
+            mythic: 0,
+            legendary: 0,
+            pet: 0,
+
+            kuda: 0,
+            kudaexp: 0,
+            kucing: 0,
+            kucingexp: 0,
+            rubah: 0,
+            rubahexp: 0,
+            anjing: 0,
+            anjingexp: 0,
+
+            kudalastfeed: 0,
+            kucinglastfeed: 0,
+            rubahlastfeed: 0,
+            anjinglastfeed: 0,
+
+            armor: 0,
+            armordurability: 0,
+            sword: 0,
+            sworddurability: 0,
+            pickaxe: 0,
+            pickaxedurability: 0,
+            fishingrod: 0,
+            fishingroddurability: 0,
+            
+            as: 0,
+            paus: 0,
+            kepiting: 0,
+            gurita: 0,
+            cumi: 0,
+            buntal: 0,
+            dory: 0,
+            lumba: 0,
+            lobster: 0,
+            hiu: 0,
+            udang: 0,
+            ikan: 0,
+            orca: 0,
+
+            lastclaim: 0,
+            lastadventure: 0,
+            lastfishing: 0,
+            lastdungeon: 0,
+            lastduel: 0,
+            lastmining: 0,
+            lasthunt: 0,
+            lastweekly: 0,
+            lastmonthly: 0,
         }
 
         let chat = global.db.data.chats[m.chat]
