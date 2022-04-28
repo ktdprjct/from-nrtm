@@ -1,4 +1,4 @@
-global.owner = ['62895342581896', '6285161212950', '6285877650700'] // Put your number here
+global.owner = ['62895342581896', '6285171612950', '6285877650700'] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
@@ -30,8 +30,41 @@ global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=tr
 // Sticker WM
 global.packname = `prjct bot`
 global.author = `From ktdprjct\n62895342581896`
-
+global.wm = `© ktdprjct メ bot`
+global.watermark = wm
 global.multiplier = 69 // The higher, The harder levelup
+
+global.rpg = {
+  emoticon(string) {
+    string = string.toLowerCase()
+    let emot = {
+      exp: '✉️',
+      money: '💵',
+      potion: '🥤',
+      diamond: '💎',
+      common: '📦',
+      uncommon: '🎁',
+      mythic: '🗳️',
+      legendary: '🗃️',
+      pet: '🎁',
+      sampah: '🗑',
+      armor: '🥼',
+      sword: '⚔️',
+      kayu: '🪵',
+      batu: '🪨',
+      string: '🕸️',
+      kuda: '🐎',
+      kucing: '🐈' ,
+      anjing: '🐕',
+      petFood: '🍖',
+      gold: '👑',
+      emerald: '💚'
+    }
+    let results = Object.keys(emot).map(v => [v, new RegExp(v, 'gi')]).filter(v => v[1].test(string))
+    if (!results.length) return ''
+    else return emot[results[0][0]]
+  }
+}
 
 let fs = require('fs')
 let chalk = require('chalk')
