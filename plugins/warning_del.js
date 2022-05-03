@@ -1,21 +1,24 @@
-let handler = async (m) => {
-  let mention = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false
-  if (!mention) throw `Tag/mention orangnya!`
-  let warn = global.db.data.users[mention].warn
-  if (warn > 0) {
-    global.db.data.users[mention].warn -= 1
-    m.reply('⚠️ *WARNING -1*')
-    m.reply(`Admin mengurangi warn kamu, warn kamu sekarang ${warn - 1}`, mention)
-  } else if (warn == 0) {
-    m.reply('User tidak memiliki warn')
+let handler = async (m, { conn, isGroup, isAdmin, isBotAdmin }) => {
+   if (!m.isGroup) return m.reply("Perintah ini hanya bisa digunakan di group!")
+   if (!isAdmin) return m.reply("Perintah ini hanya dapat dilakukan oleh admin!")
+   if (!isBotAdmin) return m.reply("Jadikan bot sebagai admin untuk menggunakan perintah ini!")
+   if (m.quoted) {
+    if (m.quoted.mentionedJid) {
+      for (let userWarn of m.quoted.mentionedJid) {
+      delete global.db.data.warns[m.chat].users[userWarn]
+      conn.reply(m.chat, "Admin " + "@" + m.sender.split("@")[0] + "telah menghapus peringatan untuk " + "@" + userWarn.split`@`[0])
+    }
   }
+} else if (m.mentionedJid) {
+    if (m.mentionedJid.length < 1) throw "Tag usernya!"
+    for (let userWarn of m.mentionedJid) {
+      delete global.db.data.warns[m.chat].users[userWarn]
+      conn.reply(m.chat, `Admin ` + "@" + m.sender.split("@")[0] + ` telah menghapus peringatan untuk ` + "@" + userWarn.split`@`[0] + ` !`)                  
+    }
+  } else throw "Tag usernya!"
 }
-
-handler.help = ['Delwarn @user']
+handler.help = ['deletewarn @mention']
 handler.tags = ['group']
-handler.command = /^delwarn$/i
-
-handler.group = true
-handler.admin = true
+handler.command = /^(deletewarn|delwarn)?$/i
 
 module.exports = handler
