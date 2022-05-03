@@ -217,6 +217,17 @@ module.exports = {
           delete: true,
           antiLink: false,
         }
+        
+        // db warn
+        if (m.isGroup) {
+        let dbWarn = global.db.data.warns[m.chat]
+        if (typeof dbWarn !== "object") global.db.data.warns[m.chat] = {}
+        if (dbWarn) {
+          if (typeof dbWarn.users !== "object") dbWarn.users = {}
+        } else global.db.data.warns[m.chat] = {
+          users: {}
+        }
+      }
 
         let settings = global.db.data.settings
         if (typeof settings !== 'object') global.db.data.settings = {}
