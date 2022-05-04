@@ -23,37 +23,40 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-╭────❑ *MENU* ❑────
+╭━━━━━━━━━━━━┈ ❋ཻུ۪۪⸙
+├───❑「 %me 」❑───
+│
 │✾ Hai, Kak %name!
-❑────❑ %me
 │✾ Version: %version
 │✾ Library: Baileys
 │✾ Runtime: %uptime
-╰❑
-╭────❑「 INFO 」❑────
-│ Tersisa *%limit Limit*
-│ Role *%role*
-│ Level *%level*
-│ %totalexp XP in Total
-│ Database: %rtotalreg of %totalreg
-╰────
-╭───❑「 ᴛʜᴀɴᴋ ʏᴏᴜ ᴛᴏ 」❑───
-│ *↓ Nurutomo ↓*
-│ https://github.com/Nurutomo
-│ *↓ rthelolchex ↓*
-│ https://github.com/rthelolchex
-╰────
+│✾ Database: %rtotalreg of %totalreg
+╰┬────────────┈ ⳹
+┌┤◦➛ *Nama* : %name
+││◦➛ *Role* :  %role
+││◦➛ *Level* : %level
+││◦➛ *Exp* : %totalexp
+││◦➛ *Limit* : %limit
+││◦➛ *Money* : Rp.%money
+│╰────────────┈ ⳹
+├───❑「 ᴛʏ ᴛᴏ 」❑───
+│
+│  ↓ Nurutomo ↓
+│https://github.com/Nurutomo
+│  ↓ rthelolchex ↓
+│https://github.com/rthelolchex
+╰━━━━━━━━━━━━┈ ❋ཻུ۪۪⸙
 %readmore`.trimStart(),
-  header: '╭─「 %category 」',
-  body: '│ 🗿⃫⃟⃤ %cmd %islimit %isPremium',
-  footer: '╰────\n',
+  header: "╭───❑「 %category 」❑───\n│",
+  body: `│◦➛ %cmd %islimit %isPremium`,
+  footer: '╰────────────┈ ⳹\n',
   after: `
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-    let { exp, limit, level, role } = global.db.data.users[m.sender]
+    let { exp, money, limit, level, role } = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
@@ -141,7 +144,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       totalexp: exp,
       xp4levelup: max - exp,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
-      level, limit, name, week, date, dateIslamic, time, totalreg, rtotalreg, role,
+      level, limit, money, name, week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
