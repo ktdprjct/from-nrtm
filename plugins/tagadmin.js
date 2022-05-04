@@ -7,9 +7,8 @@ let handler = async(m, { conn, isGroup, isAdmin, participants, groupMetadata }) 
 
  let member = await groupMetadata.participants
  let admin = await getGroupAdmins(member)
- let hideteks = text ? text: 'Nothing'
 
-    conn.reply(m.chat, `${hideteks}\n\n┏━━°❀❬ *LIST ADMIN* ❭❀°━━┓\n┃\n${admin.map(v => '┃• @' + v.replace(/@.+/, '')).join('\n')}\n┗━━━━━━━━━━━━━━`, null, { contextInfo: { mentionedJid: admin } })               
+    conn.reply(m.chat, `┏━━°❀❬ *LIST ADMIN* ❭❀°━━┓\n┃\n${admin.map(v => '┃• @' + v.replace(/@.+/, '')).join('\n')}\n┗━━━━━━━━━━━━━━`, null, { contextInfo: { mentionedJid: admin } })               
 }
 handler.help = ['listadmin','tagadmin']
 handler.tags = ['group']
